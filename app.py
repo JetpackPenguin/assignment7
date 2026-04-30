@@ -42,6 +42,23 @@ if st.button("Create"):
     st.write(res.json())
 
 
+#----------GET ALL-----------------
+st.header("🎵 All Musicians")
+
+if st.button("Load All Musicians"):
+    res = requests.get(f"{API_URL}/musicians")
+
+    if res.status_code == 200:
+        data = res.json()
+
+        # Your backend returns: { total, musicians: [...] }
+        st.write("Total:", data.get("total"))
+
+        st.dataframe(data.get("musicians"))
+    else:
+        st.error("Failed to load musicians")
+        st.write(res.text)
+
 # ---------------- SEARCH ----------------
 st.header("Search Musicians")
 
