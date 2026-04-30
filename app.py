@@ -7,15 +7,9 @@ API_URL = os.getenv("API_URL")
 API_KEY = os.getenv("ADMIN_API_KEY")
 
 # ---------------- AUTH SECTION ----------------
-st.sidebar.title("🔐 Admin Login")
+st.sidebar.title("🔐 Admin Access")
 
 api_key = st.sidebar.text_input("Enter Admin Key", type="password")
-
-if api_key:
-    headers = {"X-Admin-Key": api_key}
-else:
-    headers = {}
-    st.warning("Enter Admin Key to enable write actions")
 # ------------------------------------------------
 
 
