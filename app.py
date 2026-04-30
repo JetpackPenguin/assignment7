@@ -1,14 +1,27 @@
 import streamlit as st
 import requests
 import logging
+import os
 
-API_URL = "https://your-render-url.onrender.com"
-API_KEY = "your_admin_key_here"
+API_URL = os.getenv("API_URL")
+API_KEY = os.getenv("ADMIN_API_KEY")
+
+# ---------------- AUTH SECTION ----------------
+st.sidebar.title("🔐 Admin Login")
+
+api_key = st.sidebar.text_input("Enter Admin Key", type="password")
+
+if api_key:
+    headers = {"X-Admin-Key": api_key}
+else:
+    headers = {}
+    st.warning("Enter Admin Key to enable write actions")
+# ------------------------------------------------
+
 
 headers = {
     "X-Admin-Key": API_KEY
 }
-
 logging.basicConfig(level=logging.INFO)
 
 st.title("🎵 Musicians App")
